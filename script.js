@@ -56,7 +56,7 @@ const createTodos = (user) => {
 
     // todoItem.appendChild(todoList)
     // todoItem.append(todoItem)
-    // todoItem.append(deleteBtn)
+    todoItem.append(deleteBtn)
 
     return todoItem
 } 
