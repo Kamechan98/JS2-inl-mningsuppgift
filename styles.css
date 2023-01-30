@@ -48,9 +48,9 @@ body {
 .output .todo-list .todo-item {
   font-size: 1.2rem;
   list-style: none;
-  text-align: center;
+  text-align: start;
+  padding-left: 15px;
   height: 40px;
-  text-align: center;
   font-style: italic;
 }
 .output .todo-list .todo-item:hover {
@@ -68,9 +68,18 @@ body {
 }
 .output .todo-list .close:hover {
   background-color: red;
-  transition: 2s;
+  transition: 0.5s;
 }
 .output .todo-list .checked {
   text-decoration: line-through;
   color: rgb(64, 64, 64);
+}
+
+#error-message {
+  font-size: 20px;
+  color: red;
+}
+
+.display-none {
+  display: none;
 }/*# sourceMappingURL=styles.css.map */
