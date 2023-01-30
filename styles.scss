@@ -52,6 +52,16 @@ body{
         height: 40px;
         font-style: italic;    
     }
+    .checked{
+    text-decoration: line-through;
+    color: rgb(64, 64, 64);
+    font-size:1.2rem;
+    list-style: none;
+    text-align: start;
+    padding-left: 15px;
+    height: 40px;
+    font-style: italic;    
+    }
     .todo-item:hover{
         transition: 0,5s;
         background-color: #9b9b9b;
@@ -69,12 +79,10 @@ body{
         background-color: red;
         transition: .5s;
     }
-    .checked{
-        text-decoration: line-through;
-        color: rgb(64, 64, 64);
-    }
+   
 }
 }
+
 
 #error-message{
     font-size: 20px;

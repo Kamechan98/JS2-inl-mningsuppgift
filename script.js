@@ -1,4 +1,4 @@
-const BASE_URL = 'https://jsonplaceholder.typicode.com/todos?_limit=7'
+const BASE_URL = 'https://jsonplaceholder.typicode.com/todos/'
 const todos = [];
 
 const input = document.querySelector('#input')
@@ -11,7 +11,7 @@ const todoItem = document.querySelector('.todo-item');
 
 //Funktion som hämtar alla todos och pushar in dem i en tom Array
 const getTodos = async () => {
-    fetch(BASE_URL)
+    fetch('https://jsonplaceholder.typicode.com/todos?_limit=7')
     .then(res => res.json())
     .then(data => {
         console.log(data)
@@ -40,21 +40,58 @@ const listTodos = () => {
 
 
 //Funktion som skapar alla element för todos innan de listas i DOMEN
-const createTodos = (user) => {
+const createTodos = (todo) => {
 
     let todoList = document.createElement('div')
     todoList.classList.add = 'todo-list'
 
     let todoItem = document.createElement('p', 'button')
-    // user.title = user.title
-    todoItem.innerText = user.title
+    todoItem.innerText = todo.title
     todoItem.classList = 'todo-item'
-    
+    if(todo.completed === true){
+        todoItem.classList.add('checked')
+    }
 
+    todoItem.addEventListener('click', e => {
+        
+        fetch(BASE_URL + todo.id, {
+            method: 'PATCH',
+            body:JSON.stringify({completed:!todo.completed}),
+            headers:{
+            'Content-type': 'application/json; charset=UTF-8',
+            },
+        })
+        .then(res => res.json())
+        .then (data => {
+            todo.completed = data.completed
+            todoItem.classList.toggle('checked')
+        }) 
+     
+    })
+    
     let deleteBtn = document.createElement('button')
     deleteBtn.className = 'close'
     deleteBtn.innerText = 'X'
-
+    
+    deleteBtn.addEventListener('click', e => {
+        if(!todo.completed){
+            //SKAPA MODAL
+            return
+        }
+        fetch(BASE_URL + todo.id, {
+            method: 'DELETE'
+        })
+        .then(res => {
+            console.log(res)
+            if(res.ok){
+                todoItem.remove()
+                console.log(todos.indexOf(todo))
+                const index = todos.indexOf(todo)
+                todos.splice(index, 1)
+                console.log(todos)
+            }
+        })
+    })
 
     todoList.append(todoItem)
     todoItem.append(deleteBtn)
@@ -65,9 +102,10 @@ const createTodos = (user) => {
 const validateInput = e => {
         
     const textInput = document.querySelector('#todo-input');
+    // const inputValue = input.value;
     const errorMessage = document.querySelector('#error-message');
 
-    if(textInput.value() === '' ) {
+    if(textInput.value.trim() === '' ) {
         errorMessage.classList.remove('display-none')
         return false
     }
@@ -110,27 +148,17 @@ const handleSubmit = e =>{
 }
 
 const removeTodo = e => {
+    console.log(e.target.id)
     if(!e.target.classList.contains('close')){
         console.log('klickade inte på knappen')
     return
     }
 
-    fetch(BASE_URL + e.target.id, {
-        method: 'DELETE',
-    })
-    .then(res => {
-        console.log(res)
-        if(res.ok){
-            e.target.remove()
-            const index = todos.findIndex(user => user.id == e.target.id)
-            todos.splice(index, 1)
-            console.log(todos)
-        }
-    })
+   
 } 
 
 
 
 
 input.addEventListener('submit', handleSubmit);
-todoList.addEventListener('click', removeTodo);
+// todoList.addEventListener('click', removeTodo);
