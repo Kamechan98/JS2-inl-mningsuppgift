@@ -78,7 +78,7 @@ const createTodos = (todo) => {
     deleteBtn.addEventListener('click', e => {
         if(!todo.completed){
             //SKAPA MODAL
-            
+            modal.style.display = 'block'
             return
         }
         fetch(BASE_URL + todo.id, {
@@ -150,16 +150,11 @@ const handleSubmit = e =>{
 
 }
 
-const removeTodo = e => {
-    console.log(e.target.id)
-    if(!e.target.classList.contains('close')){
-        console.log('klickade inte på knappen')
-    return
-    }
-
-   
-} 
-
+closeBtn.addEventListener ('click', e => {
+   if(e.target == closeBtn) {
+    closeBtn.parentElement.classList.add('display-none')
+   }
+})
 
 
 
