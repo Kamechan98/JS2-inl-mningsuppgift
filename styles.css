@@ -81,6 +81,27 @@ body {
   transition: 0.5s;
 }
 
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  left: 300px;
+  top: 50px;
+}
+.modal .modal-content {
+  background-color: rgb(114, 114, 114);
+  font-size: 20px;
+  padding-top: 40px;
+  text-align: center;
+  width: 100vh;
+  height: 20vh;
+}
+.modal .modal-content .modal-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30px;
+}
+
 #error-message {
   font-size: 20px;
   color: red;

@@ -8,6 +8,8 @@ const output = document.querySelector('.output');
 const todoList = document.querySelector('.todo-list');
 const todoItem = document.querySelector('.todo-item');
 
+const modal = document.querySelector('#modal');
+const closeBtn = document.querySelector('#modal-btn');
 
 //Funktion som hämtar alla todos och pushar in dem i en tom Array
 const getTodos = async () => {
@@ -76,6 +78,7 @@ const createTodos = (todo) => {
     deleteBtn.addEventListener('click', e => {
         if(!todo.completed){
             //SKAPA MODAL
+            
             return
         }
         fetch(BASE_URL + todo.id, {
