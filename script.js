@@ -47,7 +47,7 @@ const createTodos = (todo) => {
     let todoList = document.createElement('div')
     todoList.classList.add = 'todo-list'
 
-    let todoItem = document.createElement('p', 'button')
+    let todoItem = document.createElement('p')
     todoItem.innerText = todo.title
     todoItem.classList = 'todo-item'
     if(todo.completed === true){
@@ -78,9 +78,14 @@ const createTodos = (todo) => {
     deleteBtn.addEventListener('click', e => {
         if(!todo.completed){
             //SKAPA MODAL
+            e.stopPropagation()
             modal.style.display = 'block'
-            return
+           
+            
+
+            return 
         }
+
         fetch(BASE_URL + todo.id, {
             method: 'DELETE'
         })
@@ -159,4 +164,3 @@ closeBtn.addEventListener ('click', e => {
 
 
 input.addEventListener('submit', handleSubmit);
-// todoList.addEventListener('click', removeTodo);
