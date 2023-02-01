@@ -13,7 +13,7 @@ const closeBtn = document.querySelector('#modal-btn');
 
 //Funktion som hämtar alla todos och pushar in dem i en tom Array
 const getTodos = async () => {
-    fetch('https://jsonplaceholder.typicode.com/todos?_limit=7')
+    fetch('https://jsonplaceholder.typicode.com/todos?_limit=7') //URL QUERY ?_limit=7 sätter en gräns på vår data så bara 7 todos laddas in
     .then(res => res.json())
     .then(data => {
         console.log(data)
@@ -30,10 +30,8 @@ getTodos()
 
 //Funktion som listar alla todos för kör funktion som skapar ett todo-element för varje todo i listan, skrivs sedan ut i DOMEN
 const listTodos = () => {
-    todoList.innerText = ''
-    todos.forEach(user => {
-        // console.log(user)
-        const todoElement = createTodos(user)
+    todos.forEach(todo => {
+        const todoElement = createTodos(todo)
         todoList.appendChild(todoElement)
         
     })
@@ -54,8 +52,10 @@ const createTodos = (todo) => {
         todoItem.classList.add('checked')
     }
 
+    //Lägger till en Eventlistenener på mitt todo-item. När knappen trycks körs en PATCH
     todoItem.addEventListener('click', e => {
         
+        //Hämtar URL + id från alla todos, lägger sedan till en en funktion som ger möjlighet att toggla fram och tillbaka mellan klar och oklar
         fetch(BASE_URL + todo.id, {
             method: 'PATCH',
             body:JSON.stringify({completed:!todo.completed}),
@@ -63,6 +63,7 @@ const createTodos = (todo) => {
             'Content-type': 'application/json; charset=UTF-8',
             },
         })
+        //lägger till klassen 'checked' som vi nu kan toggla fram och tillbaka emellan
         .then(res => res.json())
         .then (data => {
             todo.completed = data.completed
@@ -75,10 +76,12 @@ const createTodos = (todo) => {
     deleteBtn.className = 'close'
     deleteBtn.innerText = 'X'
     
+    //Funktion för delete-knappen
     deleteBtn.addEventListener('click', e => {
+        //Om en todo INTE är complete 
         if(!todo.completed){
             
-            //Stoppar funktionen efter 'clicket' struntar i eventlistern på DIVEN
+            //Stoppar funktionen efter 'clicket' struntar i eventlistern på DIVEN A.K.A delete händer inte. Tar också bort display-none på modal
             e.stopPropagation()
             modal.classList.remove('display-none')
 
@@ -155,12 +158,16 @@ const handleSubmit = e =>{
 
 }
 
+//Funktion som ger stängknappen på modalen- och kan ta bort den så den inte syns
 closeBtn.addEventListener ('click', e => {
    if(e.target == closeBtn) {
     modal.classList.add('display-none')
    }
+   if(e.target == window) {
+    modal.classList.add('display-none');
+   }
 })
 
 
-
+//Kör submit-funktion
 input.addEventListener('submit', handleSubmit);
