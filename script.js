@@ -150,6 +150,7 @@ const handleSubmit = e =>{
         const todoElement = createTodos(data)
       todos.push(data)
         todoList.appendChild(todoElement);
+        input.reset()
     });
 
 }

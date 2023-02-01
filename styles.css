@@ -36,8 +36,10 @@ body {
 }
 
 .output .todo-list {
-  width: 100%;
+  width: 200vh;
   margin-top: 2rem;
+  margin-left: 40px;
+  margin-right: 10px;
   border: solid 2px black;
   display: flex;
   justify-content: center;
@@ -74,7 +76,7 @@ body {
   height: 40px;
   width: 80px;
   position: absolute;
-  right: 0px;
+  right: 61px;
 }
 .output .todo-list .close:hover {
   background-color: red;
@@ -83,12 +85,14 @@ body {
 
 .modal {
   position: fixed;
-  left: 300px;
-  top: 50px;
+  left: 360px;
+  top: 90px;
 }
 .modal .modal-content {
   background-color: rgb(114, 114, 114);
-  font-size: 20px;
+  box-shadow: 5px 5px 5px 3px rgba(0, 0, 0, 0.2588235294);
+  border-radius: 5px;
+  font-size: 1.5rem;
   padding-top: 40px;
   text-align: center;
   width: 100vh;
