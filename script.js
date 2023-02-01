@@ -77,11 +77,10 @@ const createTodos = (todo) => {
     
     deleteBtn.addEventListener('click', e => {
         if(!todo.completed){
-            //SKAPA MODAL
-            e.stopPropagation()
-            modal.style.display = 'block'
-           
             
+            //Stoppar funktionen efter 'clicket' struntar i eventlistern på DIVEN
+            e.stopPropagation()
+            modal.classList.remove('display-none')
 
             return 
         }
@@ -157,7 +156,7 @@ const handleSubmit = e =>{
 
 closeBtn.addEventListener ('click', e => {
    if(e.target == closeBtn) {
-    closeBtn.parentElement.classList.add('display-none')
+    modal.classList.add('display-none')
    }
 })
 

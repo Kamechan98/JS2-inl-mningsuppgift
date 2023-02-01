@@ -82,7 +82,6 @@ body {
 }
 
 .modal {
-  display: none; /* Hidden by default */
   position: fixed;
   left: 300px;
   top: 50px;
