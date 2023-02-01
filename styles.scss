@@ -89,7 +89,9 @@ body{
     left: 360px;
     top: 90px;
     .modal-content{
-    background-color: rgb(114, 114, 114);
+    background-color: rgb(197, 197, 197);
+    color: red;
+    border: solid 3px black;
     box-shadow: 5px 5px 5px 3px #00000042;
     border-radius: 5px;
     font-size: 1.5rem;
@@ -99,8 +101,8 @@ body{
     height: 20vh; 
     .modal-btn{
     position: absolute;
-    top: 0;
-    right: 0;  
+    top: 3px;
+    right: 3px;  
     width: 30px;
     }  
     }
